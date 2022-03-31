@@ -1,6 +1,6 @@
 import { store } from 'store';
 
-//custom types
+//User and UserReducerState
 type Location = {
     city: string
     postCode: string
@@ -23,12 +23,48 @@ export type User = {
     unreadConversations: string[]
 };
 
-
-//States and RootState
 export type UserReducerState = {
     user: User
     isLoggedin: boolean
     token: string
 }
+
+//Event and EventReducerState
+type EventLocDocument = {
+    address: string
+    city: string
+    postCode: string
+    country: string
+};
+
+export type Review = {
+    reviewer: string
+    content: string
+    score: number
+};
+
+export type Event = {
+    _id: string
+    eventName: string
+    eventDateTime: Date
+    status: 'ongoing' | 'cancelled' | 'over'
+    eventLoc: EventLocDocument
+    mainPic: string
+    cuisine: string
+    description: string
+    responseDateline: Date
+    contributionAmt: number
+    contributionCurrency: string
+    numOfAttendeesAllowed: number
+    reviews: Review[]
+};
+
+export type EventReducerState = {
+    events: Event[]
+    eventsByCity: Event[]
+};
+
+//States and RootState
+
 
 export type RootState = ReturnType<typeof store.getState>;

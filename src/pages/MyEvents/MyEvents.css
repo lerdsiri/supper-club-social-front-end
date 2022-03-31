@@ -1,0 +1,55 @@
+.main-content {
+    display: flex;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.main-content nav {
+    width: 25%;
+    min-height: 20rem;
+    border-right: solid 2px rgb(182, 233, 230);
+}
+
+.main-content__event-details {
+    width: 65%;
+    min-height: 20rem;
+    margin: auto;
+    margin-bottom: 5rem;
+}
+
+.main-content__event-details h4 {
+    margin-top: 4rem;
+    color:rgba(56, 126, 121, 0.5);
+}
+
+.button {
+    padding: 0.5rem 2rem;
+    margin: 2rem 1rem;
+    cursor: pointer;
+    border: solid 0.5px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 0.5px 0.5px;
+    font-family: inherit;
+    color: white;
+    background-color: rgba(56, 126, 121, 0.5);
+}
+
+.event-box {
+    padding: 1rem;
+    margin-bottom: 2rem;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.event-box img {
+    width: 100%;
+}
+
+.event-title {
+    font-size: 2rem;
+}
+
+.small-text {
+    font-size: 0.7rem;
+}

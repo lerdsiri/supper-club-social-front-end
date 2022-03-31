@@ -1,0 +1,18 @@
+.top-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ccc;
+    border-bottom: solid 2px rgba(182, 233, 230, 1);
+}
+
+.top-banner h1 {
+    color: white;
+    margin-left: 1rem;
+}
+
+.top-banner p {
+    color: white;
+    width: 25%;
+}
+

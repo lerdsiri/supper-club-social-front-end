@@ -1,0 +1,22 @@
+.main-content {
+    display: flex;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.main-content nav {
+    width: 25%;
+    min-height: 20rem;
+    border-right: solid 2px rgb(182, 233, 230);
+}
+
+.main-content__events-by-city {
+    width: 45%;
+    min-height: 20rem;
+    border-right: solid 2px rgb(182, 233, 230);
+}
+
+.main-content__cart {
+    width: 30%;
+}

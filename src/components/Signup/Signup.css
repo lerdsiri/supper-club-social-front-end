@@ -1,12 +1,16 @@
+.signup-form {
+    width: 90%;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+}
+
 .form-type {
     color:rgba(56, 126, 121, 0.5);
 }
 
 .signup-form div {
     width: 100%;
-    padding: 0.5rem 0;
-    border: solid 1px #ccc;
-    border-radius: 5px;
+    padding: 0.5rem 1rem;
 }
 
 .signup-form label {

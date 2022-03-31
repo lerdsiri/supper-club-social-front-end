@@ -22,7 +22,7 @@ export default function Login() {
   return (
     <div>
         <p className="form-type">Login</p>
-        <div>
+        <div className="login-form">
           <Formik
             initialValues={initialValues}
             validationSchema={userSchema}
@@ -34,13 +34,14 @@ export default function Login() {
                   const token = data.data.token;
                   dispatch(userActions.getUser({ user, token }));
                 })
+                .catch((error) => alert("Email or password is invalid."));
             }}
           >
             {({values, errors, touched}) => (
-              <Form className="login-form">
+              <Form>
                 <div>
                   <label htmlFor="email">Email</label>
-                  <Field id="email" name="email" placeholder="email" />
+                  <Field id="email" name="email" />
                   {errors.email && touched.email
                     ? (<div className="Errors">{errors.email}</div>)
                     : null
@@ -48,7 +49,7 @@ export default function Login() {
                 </div>
                 <div>
                   <label htmlFor="password">Password</label>
-                  <Field id="password" name="password" placeholder="password" />
+                  <Field id="password" name="password" />
                   {errors.password && touched.password
                     ? (<div className="Errors">{errors.password}</div>)
                     : null

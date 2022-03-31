@@ -1,0 +1,53 @@
+.create-event-form {
+    width: 90%;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    margin: auto;
+}
+
+.form-type {
+    color:rgba(56, 126, 121, 0.5);
+}
+
+.create-event-form div {
+    width: 100%;
+    padding: 0.5rem 1rem;
+}
+
+.create-event-form label {
+    font-weight: bold;
+    font-size: 0.7rem;
+    margin-right: 0.5rem;
+    text-align: left;
+    float: left;
+}
+
+.create-event-form input {
+    font-size: 0.7rem;
+    font-family: inherit;
+    width: 100%;
+}
+
+.create-event-form input:focus {
+    outline: none;
+    background: rgba(182, 233, 230, 0.5);
+    border-color: rgba(56, 126, 121, 0.5);
+}
+
+.create-event-form button {
+    padding: 0.5rem 2rem;
+    margin: 1rem 0;
+    cursor: pointer;
+    border: solid 0.5px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 0.5px 0.5px;
+    font-family: inherit;
+    color: white;
+    background-color: rgba(56, 126, 121, 0.5);
+}
+
+.Errors {
+    color: red;
+    border: none;
+    font-size: 0.7rem;
+}

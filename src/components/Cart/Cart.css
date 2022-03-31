@@ -1,0 +1,53 @@
+.cart-column {
+    width: 85%;
+    margin: auto;
+}
+
+.event-item {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.event-box img {
+    width: 100%;
+}
+
+.event-name {
+    font-size: 1.2rem;
+}
+
+.small-text {
+    font-size: 0.7rem;
+}
+
+.button {
+    padding: 0.5rem 2rem;
+    margin: 1rem 0;
+    cursor: pointer;
+    border: solid 0.5px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 0.5px 0.5px;
+    font-family: inherit;
+    color: white;
+    background-color: rgba(56, 126, 121, 0.5);
+}
+
+.remove-button {
+    padding: 0.5rem 2rem;
+    margin: 1rem 0;
+    cursor: pointer;
+    border: solid 0.5px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 0.5px 0.5px;
+    font-family: inherit;
+    color: white;
+    background-color: rgba(56, 126, 121, 0.5);
+}
+
+.total {
+    margin-bottom: 0;
+    padding: 1rem;
+    border-top: solid 2px #ccc;
+}

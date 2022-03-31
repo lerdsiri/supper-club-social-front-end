@@ -36,7 +36,7 @@ export default function Signup() {
   return (
     <div>
         <p className="form-type">Sign up</p>
-        <div>
+        <div className="signup-form">
           <Formik
             initialValues={initialValues}
             validationSchema={userSchema}
@@ -44,16 +44,19 @@ export default function Signup() {
               axios
                 .post('http://localhost:5000/api/v1/users', values)
                 .then((data) => {
-                  console.log(data.data)
-                  alert("Signup successful! You may log in now.")
+                  console.log("Signup data: ", data);
+                  alert("Signup successful! You may log in now.");             
                 })
+                .catch((error) => {
+                  alert("Signup failed! This username or email has been taken.");
+                });
             }}
           >
             {({values, errors, touched}) => (
-              <Form className="signup-form">
+              <Form>
                 <div>
                   <label htmlFor="username">Username</label>
-                  <Field id="username" name="username" placeholder="username" />
+                  <Field id="username" name="username" />
                   {errors.username && touched.username
                     ? (<div className="Errors">{errors.username}</div>)
                     : null
@@ -61,7 +64,7 @@ export default function Signup() {
                 </div>
                 <div>
                   <label htmlFor="email">Email</label>
-                  <Field id="email" name="email" placeholder="email" />
+                  <Field id="email" name="email" />
                   {errors.email && touched.email
                     ? (<div className="Errors">{errors.email}</div>)
                     : null
@@ -69,7 +72,7 @@ export default function Signup() {
                 </div>
                 <div>
                   <label htmlFor="password">Password</label>
-                  <Field id="password" name="password" placeholder="password" />
+                  <Field id="password" name="password" />
                   {errors.password && touched.password
                     ? (<div className="Errors">{errors.password}</div>)
                     : null
@@ -77,7 +80,7 @@ export default function Signup() {
                 </div>
                 <div>
                   <label htmlFor="confirmPassword">Confirm password</label>
-                  <Field id="confirmPassword" name="confirmPassword" placeholder="confirm password" />
+                  <Field id="confirmPassword" name="confirmPassword" />
                   {errors.confirmPassword && touched.confirmPassword
                     ? (<div className="Errors">{errors.confirmPassword}</div>)
                     : null
@@ -85,7 +88,7 @@ export default function Signup() {
                 </div>
                 <div>
                   <label htmlFor="firstName">First name</label>
-                  <Field id="firstName" name="firstName" placeholder="first name" />
+                  <Field id="firstName" name="firstName" />
                   {errors.firstName && touched.firstName
                     ? (<div className="Errors">{errors.firstName}</div>)
                     : null
@@ -93,7 +96,7 @@ export default function Signup() {
                 </div>
                 <div>
                   <label htmlFor="lastName">Last name</label>
-                  <Field id="lastName" name="lastName" placeholder="last name" />
+                  <Field id="lastName" name="lastName" />
                   {errors.lastName && touched.lastName
                     ? (<div className="Errors">{errors.lastName}</div>)
                     : null
@@ -101,7 +104,7 @@ export default function Signup() {
                 </div>
                 <div>
                   <label htmlFor="city">City</label>
-                  <Field id="city" name="location.city" placeholder="city" />
+                  <Field id="city" name="location.city" />
                   {errors.location?.city && touched.location?.city
                     ? (<div className="Errors">{errors.location.city}</div>)
                     : null
@@ -109,7 +112,7 @@ export default function Signup() {
                 </div>
                 <div>
                   <label htmlFor="postCode">Postal code</label>
-                  <Field id="postCode" name="location.postCode" placeholder="postal code" />
+                  <Field id="postCode" name="location.postCode" />
                   {errors.location?.postCode && touched.location?.postCode
                     ? (<div className="Errors">{errors.location.postCode}</div>)
                     : null
@@ -117,7 +120,7 @@ export default function Signup() {
                 </div>
                 <div>
                   <label htmlFor="country">Country</label>
-                  <Field id="country" name="location.country" placeholder="country" />
+                  <Field id="country" name="location.country" />
                   {errors.location?.country && touched.location?.country
                     ? (<div className="Errors">{errors.location.country}</div>)
                     : null

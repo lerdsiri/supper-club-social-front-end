@@ -1,0 +1,31 @@
+.profile-pic {
+    width: 50%;
+    border-radius: 50%;
+    border: solid 2px rgba(182, 233, 230, 1);
+    margin: 1rem;
+    margin-bottom: 0;
+}
+
+.profile-pic + h5 {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+.profile-pic + h5 + p {
+    font-size: 0.8rem;
+}
+
+.nav-menu {
+    text-align: left;
+    font-size: 1rem;
+    margin-left: 2rem;
+}
+
+.nav-menu div {
+    margin: 1rem 0;
+    text-decoration: none;
+}
+
+.nav-menu [to] {
+
+}
