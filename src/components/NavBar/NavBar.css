@@ -1,5 +1,16 @@
+.empty-profile-pic {
+    width: 50%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: solid 2px rgba(182, 233, 230, 1);
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
 .profile-pic {
     width: 50%;
+    aspect-ratio: 1/1;
     border-radius: 50%;
     border: solid 2px rgba(182, 233, 230, 1);
     margin: 1rem;
@@ -24,8 +35,4 @@
 .nav-menu div {
     margin: 1rem 0;
     text-decoration: none;
-}
-
-.nav-menu [to] {
-
 }

@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import eventpic from 'assets/images/event-pic.jpg';
 
-import 'pages/MyEvents/MyEvents.css';
 import TopBanner from 'components/TopBanner/TopBanner';
 import NavBar from 'components/NavBar/NavBar';
 //import UserProfile from 'components/UserProfile/UserProfile';
 import CreateEvent from 'components/CreateEvent/CreateEvent';
 import { RootState } from 'types';
+import 'pages/MyEvents/MyEvents.css';
 
 export default function MyEvents() {
   const [ createNewEvent, setCreateNewEvent ] = useState(false);

@@ -41,10 +41,7 @@ export const userSlice = createSlice({
             */
         },
         updateUser(state: UserReducerState, action: PayloadAction<{updatedUser: User}>): void {
-            console.log("now updating user in redux store...")
-            console.log("payload.updatedUser: ", action.payload.updatedUser)
             state.user = action.payload.updatedUser;
-            console.log("state.user after update: ", state.user);
         },
         clearUser(state: UserReducerState): void {
             state.user = initialState.user;

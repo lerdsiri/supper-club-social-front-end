@@ -8,17 +8,34 @@
     padding: 0.5rem;
 }
 
-.signup-form {
-    width: 70%;
-    margin: auto;
+.upload-pic-title {
+    margin-bottom: 0;
 }
 
-.signup-form div {
+.pic-upload-form {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.image-to-upload {
+    width: 70%;
+    padding-bottom: 2rem;
+}
+
+.edit-profile-form {
+    width: 70%;
+    margin: auto;
+    margin-bottom: 5rem;
+    border: solid 1px #ccc;
+    border-radius: 10px;
+}
+
+.edit-profile-form div {
     width: 100%;
     padding: 0.5rem 1rem;
 }
 
-.signup-form label {
+.edit-profile-form label {
     font-weight: bold;
     font-size: 0.7rem;
     margin-right: 0.5rem;
@@ -26,19 +43,19 @@
     float: left;
 }
 
-.signup-form input {
+.edit-profile-form input {
     font-size: 0.7rem;
     font-family: inherit;
     width: 100%;
 }
 
-.signup-form input:focus {
+.edit-profile-form input:focus {
     outline: none;
     background: rgba(182, 233, 230, 0.5);
     border-color: rgba(56, 126, 121, 0.5);
 }
 
-.signup-form button {
+.edit-profile-form button {
     padding: 0.5rem 2rem;
     margin: 1rem 0;
     cursor: pointer;

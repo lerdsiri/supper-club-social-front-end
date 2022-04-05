@@ -6,6 +6,7 @@ import axios from 'axios';
 import 'components/CreateEvent/CreateEvent.css';
 import { eventActions } from 'store/eventSlice';
 import { userActions } from 'store/userSlice';
+import { conversationActions } from 'store/conversationSlice';
 import { RootState } from 'types';
 
 export default function CreateEvent() {
@@ -74,6 +75,16 @@ export default function CreateEvent() {
                       dispatch(userActions.updateUser({updatedUser: data.data}));
                     })
                     .catch((error) => console.log("Error adding event to user's list of eventsAsOrganizer.", error));
+
+                  // automatically create a message board for the created event                  
+                  axios
+                    .post(`http://localhost:5000/api/v1/conversations/`, { event: data.data._id}, {
+                      headers: { Authorization: `Bearer ${token}`}
+                    })
+                    .then((data) => {
+                      dispatch(conversationActions.addConversation({conversation: data.data}));
+                    })
+                    .catch((error) => console.log("Error creating message board", error));
                 })
                 .catch((error) => {
                   alert("Error creating event!");

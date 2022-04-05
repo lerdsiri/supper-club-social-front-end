@@ -5,7 +5,7 @@ import 'components/NavBar/NavBar.css';
 import { RootState } from 'types';
 import { userActions } from 'store/userSlice';
 import { eventActions } from 'store/eventSlice';
-import merkel from 'assets/images/merkel.jpg';
+import { conversationActions } from 'store/conversationSlice';
 
 export default function NavBar() {
   const dispatch = useDispatch();
@@ -14,6 +14,7 @@ export default function NavBar() {
   const handleLogout = () => {
     dispatch(userActions.clearUser());
     dispatch(eventActions.clearEvents());
+    dispatch(conversationActions.clearConversations());
   }
 
   //handleLogout();
@@ -21,14 +22,15 @@ export default function NavBar() {
   return (
     <div>
       <div>
-        <img className='profile-pic' src={merkel} alt='Merkel' />
+        {!user.profilePic && <p className="empty-profile-pic"><br /><br />Profile Pic</p>}
+        {user.profilePic && <img className="profile-pic" src={user.profilePic} alt='profilePic' />} 
         <h5>{user.username}</h5>
         <p>{user.location.city}, {user.location.country}</p>
       </div>
       <div className="nav-menu">
         <div><Link to="/">My page</Link></div>
         <div><Link to="/myprofile">My profile</Link></div>
-        <div>My messages</div>
+        <div><Link to="/mymessages">My messages</Link></div>
         <div><Link to="/myevents">My events</Link></div>
         <div><Link to='/' onClick={handleLogout}>Logout</Link></div>
         <br />

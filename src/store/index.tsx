@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { userSlice } from 'store/userSlice';
 import { eventSlice } from 'store/eventSlice';
+import { conversationSlice } from 'store/conversationSlice';
 import { RootState } from 'types';
 
 const key = "redux";
@@ -29,7 +30,8 @@ export const store = configureStore({
     devTools: true,
     reducer: {
         user: userSlice.reducer,
-        event: eventSlice.reducer
+        event: eventSlice.reducer,
+        conversation: conversationSlice.reducer,
     },
     preloadedState: loadFromLocalStorage()
 });
