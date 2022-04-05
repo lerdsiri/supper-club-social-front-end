@@ -1,0 +1,76 @@
+.main-content {
+    display: flex;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.main-content nav {
+    width: 25%;
+    min-height: 20rem;
+    border-right: solid 2px rgb(182, 233, 230);
+}
+
+.main-content__user-details {
+    width: 65%;
+    min-height: 20rem;
+    margin: auto;
+    margin-bottom: 5rem;
+}
+
+.main-content__user-details h4 {
+    margin-top: 4rem;
+    color:rgba(56, 126, 121, 0.5);
+}
+
+.user-profile-box {
+    display: flex;
+    flex-direction: column;
+    border: 0.1rem solid rgba(56, 126, 121, 0.5);
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.user-profile-content {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+   
+}
+
+.image-container {
+    width: 50%;
+}
+
+.user-profile-content img {
+    width: 50%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: solid 2px rgba(182, 233, 230, 1);
+    margin: 1rem;
+    margin-bottom: 0;
+}
+
+.user-profile-info {
+    width: 50%;
+    text-align: left;
+}
+
+.user-profile-info div {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: smaller;
+}
+
+.ban-unban-button {
+    padding: 0.5rem 2rem;
+    margin: 1rem 0;
+    cursor: pointer;
+    border: solid 0.5px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 0.5px 0.5px;
+    font-family: inherit;
+    color: white;
+    background-color: rgba(56, 126, 121, 0.5);
+}

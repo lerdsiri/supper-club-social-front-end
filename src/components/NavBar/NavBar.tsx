@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import 'components/NavBar/NavBar.css';
 import { RootState } from 'types';
 import { userActions } from 'store/userSlice';
 import { eventActions } from 'store/eventSlice';
 import { conversationActions } from 'store/conversationSlice';
+import 'components/NavBar/NavBar.css';
 
 export default function NavBar() {
   const dispatch = useDispatch();
@@ -34,7 +34,8 @@ export default function NavBar() {
         <div><Link to="/myevents">My events</Link></div>
         <div><Link to='/' onClick={handleLogout}>Logout</Link></div>
         <br />
-        <div>My upcoming events</div> 
+
+        {user.isAdmin && <div><Link to="/adminconsole">Admin console</Link></div>}
       </div>
     </div>
   )

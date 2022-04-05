@@ -6,6 +6,7 @@ import MyPage from 'pages/MyPage/MyPage';
 import MyProfile from 'pages/MyProfile/MyProfile';
 import MyEvents from 'pages/MyEvents/MyEvents';
 import MyMessages from 'pages/MyMessages/MyMessages';
+import AdminConsole from 'pages/AdminConsole/AdminConsole';
 
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
           <Route path='/myprofile' element={<MyProfile />} />
           <Route path='/myevents' element={<MyEvents />} />
           <Route path='/mymessages' element={<MyMessages />} />
+          <Route path='/adminconsole' element={<AdminConsole />} />
         </Routes>
       </BrowserRouter>
     </div>
