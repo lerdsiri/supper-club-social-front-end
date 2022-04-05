@@ -48,7 +48,8 @@ export default function Signup() {
                   alert("Signup successful! You may log in now.");             
                 })
                 .catch((error) => {
-                  alert("Signup failed! This username or email has been taken.");
+                  alert("Signup failed!");
+                  console.log(error);
                 });
             }}
           >
