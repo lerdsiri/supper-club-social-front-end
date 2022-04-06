@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import jwt_decode from 'jwt-decode';
 
 import mainpic from 'assets/images/main-pic.jpg';
 import MyPage from 'pages/MyPage/MyPage';

@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import eventpic from 'assets/images/event-pic.jpg';
 import axios from 'axios';
 
 import TopBanner from 'components/TopBanner/TopBanner';
@@ -87,9 +86,9 @@ export default function MyMessages() {
                                   <div>
                                     {conversation.messages?.map((message) => (
                                       <div className="existing-message" key={message._id}>
-                                        <img src={message.author.profilePic} alt="author profile pic" />
+                                        <img src={message.author?.profilePic} alt="author profile pic" />
                                         <div className="author-info">
-                                          <div className="small-text"><b>{message.author.username}</b>:</div>
+                                          <div className="small-text"><b>{message.author?.username}</b>:</div>
                                           <div className="small-text">{message.messageDateTime}</div>
                                         </div>
                                         <div className="message-content">{message.content}</div>

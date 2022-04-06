@@ -16,10 +16,7 @@ export default function EventSearch() {
 
   const [ searchTerm, setSearchTerm ] = useState(user.location.city);
   const [ showEventsInUserHomeCity, setShowEventsInUserHomeCity ] = useState(true);
- 
-  //To redo - fetch all events --> then filter by city searchterm in frontend 
-  //default: show events in my city
-  //alternate: show events from searched city
+
   useEffect( () => {
       fetch(`http://localhost:5000/api/v1/events/city/${searchTerm}`, {
               headers: { Authorization: `Bearer ${token}`}

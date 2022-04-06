@@ -1,21 +1,15 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import eventpic from 'assets/images/event-pic.jpg';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 import TopBanner from 'components/TopBanner/TopBanner';
 import NavBar from 'components/NavBar/NavBar';
-//import UserProfile from 'components/UserProfile/UserProfile';
-import CreateEvent from 'components/CreateEvent/CreateEvent';
 import { User, RootState } from 'types';
 import 'pages/AdminConsole/AdminConsole.css';
 
 export default function AdminConsole() {
-  const dispatch = useDispatch();
   const [ allUsers, setAllUsers ] = useState<User[]>([]);
-  const user = useSelector((state: RootState) => state.user.user);
   const token = useSelector((state: RootState) => state.user.token);
-  const events = useSelector((state: RootState) => state.event.events);
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/v1/users`, {
