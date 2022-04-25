@@ -7,7 +7,7 @@ import NavBar from 'components/NavBar/NavBar';
 //import UserProfile from 'components/UserProfile/UserProfile';
 import CreateEvent from 'components/CreateEvent/CreateEvent';
 import { RootState } from 'types';
-import 'pages/MyEvents/MyEvents.css';
+import styles from 'pages/MyEvents/MyEvents.module.css';
 
 export default function MyEvents() {
   const [ createNewEvent, setCreateNewEvent ] = useState(false);
@@ -15,15 +15,15 @@ export default function MyEvents() {
   const events = useSelector((state: RootState) => state.event.events);
 
   return (
-    <div className="container">
+    <div className={styles.container}>
         <TopBanner />
-        <main className="main-content">
+        <main className={styles["main-content"]}>
             <nav>
                 <NavBar />
             </nav>
-            <section className="main-content__event-details">
+            <section className={styles["main-content__event-details"]}>
                 <div>
-                  <button className='button' onClick={() => setCreateNewEvent(!createNewEvent)}>Create New Event</button>
+                  <button className={styles.button} onClick={() => setCreateNewEvent(!createNewEvent)}>Create New Event</button>
                 </div>
                 {createNewEvent && <CreateEvent />}
                 <div>
@@ -33,12 +33,12 @@ export default function MyEvents() {
                     events.map((oneEvent) => 
                       oneEvent._id.toString() === organizedEventId
                       ? 
-                        <div className="event-box" key={oneEvent._id}>
+                        <div className={styles["event-box"]} key={oneEvent._id}>
                           <div><img src={eventpic} alt="homecooked meal" /></div>
-                          <div className="event-title">{oneEvent.eventName}</div>
-                          <div className="small-text">Where: {oneEvent.eventLoc.city}, {oneEvent.eventLoc.country}</div>
-                          <div className="small-text">When: {oneEvent.eventDateTime}</div>
-                          <div className="small-text">Status: {oneEvent.status}</div>
+                          <div className={styles["event-title"]}>{oneEvent.eventName}</div>
+                          <div className={styles["small-text"]}>Where: {oneEvent.eventLoc.city}, {oneEvent.eventLoc.country}</div>
+                          <div className={styles["small-text"]}>When: {oneEvent.eventDateTime}</div>
+                          <div className={styles["small-text"]}>Status: {oneEvent.status}</div>
                           <br />
                           <div><b>Cuisine: </b>{oneEvent.cuisine}</div>
                           <div><b>No. of attendees allowed: </b>{oneEvent.numOfAttendeesAllowed}</div>
@@ -57,12 +57,12 @@ export default function MyEvents() {
                     events.map((oneEvent) => 
                       oneEvent._id.toString() === attendEventId
                       ? 
-                        <div className="event-box" key={oneEvent._id}>
+                        <div className={styles["event-box"]} key={oneEvent._id}>
                           <div><img src={eventpic} alt="homecooked meal" /></div>
-                          <div className="event-title">{oneEvent.eventName}</div>
-                          <div className="small-text">Where: {oneEvent.eventLoc.city}, {oneEvent.eventLoc.country}</div>
-                          <div className="small-text">When: {oneEvent.eventDateTime}</div>
-                          <div className="small-text">Status: {oneEvent.status}</div>
+                          <div className={styles["event-title"]}>{oneEvent.eventName}</div>
+                          <div className={styles["small-text"]}>Where: {oneEvent.eventLoc.city}, {oneEvent.eventLoc.country}</div>
+                          <div className={styles["small-text"]}>When: {oneEvent.eventDateTime}</div>
+                          <div className={styles["small-text"]}>Status: {oneEvent.status}</div>
                           <br />
                           <div><b>Cuisine: </b>{oneEvent.cuisine}</div>
                           <div><b>No. of attendees allowed: </b>{oneEvent.numOfAttendeesAllowed}</div>

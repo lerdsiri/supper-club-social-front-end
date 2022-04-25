@@ -1,5 +1,6 @@
 .main-content {
     display: flex;
+    flex-wrap: wrap;
     text-align: center;
     padding: 0;
     margin: 0;
@@ -84,11 +85,12 @@
     align-items: flex-start;
     border-bottom: solid 1px #ccc;
     padding-bottom: 0.5rem;
-    margin: 1rem 0;
+    margin: 1rem;
+    text-align: left;
 }
 
 .existing-message img {
-    max-width: 3rem;
+    width: 3rem;
     aspect-ratio: 1/1;
     border-radius: 50%;
     border: solid 2px rgba(182, 233, 230, 1);
@@ -102,5 +104,50 @@
 
 .message-content {
     width: 70%;
+    margin: 1rem;
+    text-align: left;
+
 }
 
+@media (max-width: 600px) {
+    .main-content nav {
+        width: 100%;
+        min-height: 0;
+        border: none
+    }
+    
+    .main-content__conversation-details {
+        width: 100%;
+        min-height: 0;
+        border: none;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    .main-content__conversation-details h4 {
+        margin-top: 2rem;
+    }
+
+    .conversation-box {
+        margin: 1.5rem 0;
+    }
+
+    .existing-message {
+        flex-wrap: wrap;
+        margin: 1rem 0;
+    }
+
+    .author-info {
+        width: 100%;
+        display: flex;
+        padding-bottom: 0.5rem;
+    }
+
+    .author-info div {
+        display: inline-block
+    }
+
+    .message-content {
+        width: 100%;
+    }
+}

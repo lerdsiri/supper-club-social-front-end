@@ -3,11 +3,11 @@ import { Formik, Field, Form } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
 
-import 'components/CreateEvent/CreateEvent.css';
 import { eventActions } from 'store/eventSlice';
 import { userActions } from 'store/userSlice';
 import { conversationActions } from 'store/conversationSlice';
 import { RootState } from 'types';
+import styles from 'components/CreateEvent/CreateEvent.module.css';
 
 export default function CreateEvent() {
   const initialValues = {
@@ -52,14 +52,14 @@ export default function CreateEvent() {
 
   return (
     <div>
-        <p className="form-type">Create New Event</p>
-        <div className="create-event-form">
+        <p className={styles["form-type"]}>Create New Event</p>
+        <div className={styles["create-event-form"]}>
           <Formik
             initialValues={initialValues}
             validationSchema={eventSchema}
             onSubmit={(values) => {
               axios
-                .post('http://localhost:5000/api/v1/events', values, {
+                .post('https://supper-club-social-backend.herokuapp.com/api/v1/events', values, {
                   headers: { Authorization: `Bearer ${token}`}
                 })
                 .then((data) => {
@@ -68,7 +68,7 @@ export default function CreateEvent() {
                   
                   // adding the created event to user's list of eventsAsOrganizer
                   axios
-                    .patch(`http://localhost:5000/api/v1/users/${user._id}/eventsAsOrganizer/events/${data.data._id}`, {}, {
+                    .patch(`https://supper-club-social-backend.herokuapp.com/api/v1/users/${user._id}/eventsAsOrganizer/events/${data.data._id}`, {}, {
                       headers: { Authorization: `Bearer ${token}`}
                     })
                     .then((data) => {
@@ -78,7 +78,7 @@ export default function CreateEvent() {
 
                   // automatically create a message board for the created event                  
                   axios
-                    .post(`http://localhost:5000/api/v1/conversations/`, { event: data.data._id}, {
+                    .post(`https://supper-club-social-backend.herokuapp.com/api/v1/conversations/`, { event: data.data._id}, {
                       headers: { Authorization: `Bearer ${token}`}
                     })
                     .then((data) => {
@@ -98,15 +98,15 @@ export default function CreateEvent() {
                   <label htmlFor="eventName">Event name</label>
                   <Field id="eventName" name="eventName" />
                   {errors.eventName && touched.eventName
-                    ? (<div className="Errors">{errors.eventName}</div>)
+                    ? (<div className={styles.Errors}>{errors.eventName}</div>)
                     : null
                   }
                 </div>
                 <div>
-                  <label htmlFor="eventDateTime">Event date and time</label>
-                  <Field id="eventDateTime" name="eventDateTime" />
+                  <label htmlFor="eventDateTime">Event date and time - YYYY-MM-DDTHH-MM</label>
+                  <Field id="eventDateTime" name="eventDateTime" placeholder="YYYY-MM-DDTHH-MM-SS" />
                   {errors.eventDateTime && touched.eventDateTime
-                    ? (<div className="Errors">{errors.eventDateTime}</div>)
+                    ? (<div className={styles.Errors}>{errors.eventDateTime}</div>)
                     : null
                   }
                 </div>
@@ -114,7 +114,7 @@ export default function CreateEvent() {
                   <label htmlFor="address">Address</label>
                   <Field id="address" name="eventLoc.address" />
                   {errors.eventLoc?.address && touched.eventLoc?.address
-                    ? (<div className="Errors">{errors.eventLoc.address}</div>)
+                    ? (<div className={styles.Errors}>{errors.eventLoc.address}</div>)
                     : null
                   }
                 </div>
@@ -122,7 +122,7 @@ export default function CreateEvent() {
                   <label htmlFor="city">City</label>
                   <Field id="city" name="eventLoc.city" />
                   {errors.eventLoc?.city && touched.eventLoc?.city
-                    ? (<div className="Errors">{errors.eventLoc.city}</div>)
+                    ? (<div className={styles.Errors}>{errors.eventLoc.city}</div>)
                     : null
                   }
                 </div>
@@ -130,7 +130,7 @@ export default function CreateEvent() {
                   <label htmlFor="postCode">Postal Code</label>
                   <Field id="postCode" name="eventLoc.postCode" />
                   {errors.eventLoc?.postCode && touched.eventLoc?.postCode
-                    ? (<div className="Errors">{errors.eventLoc.postCode}</div>)
+                    ? (<div className={styles.Errors}>{errors.eventLoc.postCode}</div>)
                     : null
                   }
                 </div>
@@ -138,7 +138,7 @@ export default function CreateEvent() {
                   <label htmlFor="country">Country</label>
                   <Field id="country" name="eventLoc.country" />
                   {errors.eventLoc?.country && touched.eventLoc?.country
-                    ? (<div className="Errors">{errors.eventLoc.country}</div>)
+                    ? (<div className={styles.Errors}>{errors.eventLoc.country}</div>)
                     : null
                   }
                 </div>
@@ -146,7 +146,7 @@ export default function CreateEvent() {
                   <label htmlFor="cuisine">Cuisine</label>
                   <Field id="cuisine" name="cuisine" />
                   {errors.cuisine && touched.cuisine
-                    ? (<div className="Errors">{errors.cuisine}</div>)
+                    ? (<div className={styles.Errors}>{errors.cuisine}</div>)
                     : null
                   }
                 </div>
@@ -154,15 +154,15 @@ export default function CreateEvent() {
                   <label htmlFor="description">Description</label>
                   <Field id="description" name="description" />
                   {errors.description && touched.description
-                    ? (<div className="Errors">{errors.description}</div>)
+                    ? (<div className={styles.Errors}>{errors.description}</div>)
                     : null
                   }
                 </div>
                 <div>
-                  <label htmlFor="responseDateline">Response Dateline</label>
-                  <Field id="responseDateline" name="responseDateline" />
+                  <label htmlFor="responseDateline">Response Dateline - YYYY-MM-DDTHH-MM</label>
+                  <Field id="responseDateline" name="responseDateline" placeholder="YYYY-MM-DDTHH-MM-SS" />
                   {errors.responseDateline && touched.responseDateline
-                    ? (<div className="Errors">{errors.responseDateline}</div>)
+                    ? (<div className={styles.Errors}>{errors.responseDateline}</div>)
                     : null
                   }
                 </div>
@@ -170,7 +170,7 @@ export default function CreateEvent() {
                   <label htmlFor="contributionAmt">Contribution Amount</label>
                   <Field id="contributionAmt" name="contributionAmt" />
                   {errors.contributionAmt && touched.contributionAmt
-                    ? (<div className="Errors">{errors.contributionAmt}</div>)
+                    ? (<div className={styles.Errors}>{errors.contributionAmt}</div>)
                     : null
                   }
                 </div>
@@ -178,7 +178,7 @@ export default function CreateEvent() {
                   <label htmlFor="contributionCurrency">Contribution Currency</label>
                   <Field id="contributionCurrency" name="contributionCurrency" />
                   {errors.contributionCurrency && touched.contributionCurrency
-                    ? (<div className="Errors">{errors.contributionCurrency}</div>)
+                    ? (<div className={styles.Errors}>{errors.contributionCurrency}</div>)
                     : null
                   }
                 </div>
@@ -186,7 +186,7 @@ export default function CreateEvent() {
                   <label htmlFor="numOfAttendeesAllowed">Number of attendees allowed</label>
                   <Field id="numOfAttendeesAllowed" name="numOfAttendeesAllowed" />
                   {errors.numOfAttendeesAllowed && touched.numOfAttendeesAllowed
-                    ? (<div className="Errors">{errors.numOfAttendeesAllowed}</div>)
+                    ? (<div className={styles.Errors}>{errors.numOfAttendeesAllowed}</div>)
                     : null
                   }
                 </div>

@@ -2,9 +2,10 @@ import { Formik, Field, Form } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
 
-import 'components/Signup/Signup.css';
+import styles from 'components/Signup/Signup.module.css';
 
 export default function Signup() {
+  // Data structure of the object mirrors that in the backend.
   const initialValues = {
       username: "",
       email: "",
@@ -35,16 +36,17 @@ export default function Signup() {
 
   return (
     <div>
-        <p className="form-type">Sign up</p>
-        <div className="signup-form">
+        <p className={styles["form-type"]}>Sign up</p>
+        <div className={styles["signup-form"]}>
           <Formik
             initialValues={initialValues}
             validationSchema={userSchema}
             onSubmit={(values) => {
+              // Only post data when user signs up.
+              // User must then log in.
               axios
-                .post('http://localhost:5000/api/v1/users', values)
+                .post('https://supper-club-social-backend.herokuapp.com/api/v1/users', values)
                 .then((data) => {
-                  console.log("Signup data: ", data);
                   alert("Signup successful! You may log in now.");             
                 })
                 .catch((error) => {
@@ -59,7 +61,7 @@ export default function Signup() {
                   <label htmlFor="username">Username</label>
                   <Field id="username" name="username" />
                   {errors.username && touched.username
-                    ? (<div className="Errors">{errors.username}</div>)
+                    ? (<div className={styles.Errors}>{errors.username}</div>)
                     : null
                   }
                 </div>
@@ -67,7 +69,7 @@ export default function Signup() {
                   <label htmlFor="email">Email</label>
                   <Field id="email" name="email" />
                   {errors.email && touched.email
-                    ? (<div className="Errors">{errors.email}</div>)
+                    ? (<div className={styles.Errors}>{errors.email}</div>)
                     : null
                   }
                 </div>
@@ -75,7 +77,7 @@ export default function Signup() {
                   <label htmlFor="password">Password</label>
                   <Field id="password" name="password" />
                   {errors.password && touched.password
-                    ? (<div className="Errors">{errors.password}</div>)
+                    ? (<div className={styles.Errors}>{errors.password}</div>)
                     : null
                   }
                 </div>
@@ -83,7 +85,7 @@ export default function Signup() {
                   <label htmlFor="confirmPassword">Confirm password</label>
                   <Field id="confirmPassword" name="confirmPassword" />
                   {errors.confirmPassword && touched.confirmPassword
-                    ? (<div className="Errors">{errors.confirmPassword}</div>)
+                    ? (<div className={styles.Errors}>{errors.confirmPassword}</div>)
                     : null
                   }
                 </div>
@@ -91,7 +93,7 @@ export default function Signup() {
                   <label htmlFor="firstName">First name</label>
                   <Field id="firstName" name="firstName" />
                   {errors.firstName && touched.firstName
-                    ? (<div className="Errors">{errors.firstName}</div>)
+                    ? (<div className={styles.Errors}>{errors.firstName}</div>)
                     : null
                   }
                 </div>
@@ -99,7 +101,7 @@ export default function Signup() {
                   <label htmlFor="lastName">Last name</label>
                   <Field id="lastName" name="lastName" />
                   {errors.lastName && touched.lastName
-                    ? (<div className="Errors">{errors.lastName}</div>)
+                    ? (<div className={styles.Errors}>{errors.lastName}</div>)
                     : null
                   }
                 </div>
@@ -107,7 +109,7 @@ export default function Signup() {
                   <label htmlFor="city">City</label>
                   <Field id="city" name="location.city" />
                   {errors.location?.city && touched.location?.city
-                    ? (<div className="Errors">{errors.location.city}</div>)
+                    ? (<div className={styles.Errors}>{errors.location.city}</div>)
                     : null
                   }
                 </div>
@@ -115,7 +117,7 @@ export default function Signup() {
                   <label htmlFor="postCode">Postal code</label>
                   <Field id="postCode" name="location.postCode" />
                   {errors.location?.postCode && touched.location?.postCode
-                    ? (<div className="Errors">{errors.location.postCode}</div>)
+                    ? (<div className={styles.Errors}>{errors.location.postCode}</div>)
                     : null
                   }
                 </div>
@@ -123,7 +125,7 @@ export default function Signup() {
                   <label htmlFor="country">Country</label>
                   <Field id="country" name="location.country" />
                   {errors.location?.country && touched.location?.country
-                    ? (<div className="Errors">{errors.location.country}</div>)
+                    ? (<div className={styles.Errors}>{errors.location.country}</div>)
                     : null
                   }
                 </div>

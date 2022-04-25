@@ -6,7 +6,7 @@ import eventpic from 'assets/images/event-pic.jpg';
 import { userActions } from 'store/userSlice';
 import { eventActions } from 'store/eventSlice';
 import { RootState } from 'types';
-import 'components/EventList/EventList.css';
+import styles from 'components/EventList/EventList.module.css';
 
 export default function EventSearch() {
   const dispatch = useDispatch();
@@ -17,8 +17,10 @@ export default function EventSearch() {
   const [ searchTerm, setSearchTerm ] = useState(user.location.city);
   const [ showEventsInUserHomeCity, setShowEventsInUserHomeCity ] = useState(true);
 
+  // Fetch events by city based on the search term whenever the search term changes.
+  // Then store the list of events by city in redux store to be displayed.
   useEffect( () => {
-      fetch(`http://localhost:5000/api/v1/events/city/${searchTerm}`, {
+      fetch(`https://supper-club-social-backend.herokuapp.com/api/v1/events/city/${searchTerm}`, {
               headers: { Authorization: `Bearer ${token}`}
           })
           .then((response) => response.json())
@@ -28,60 +30,74 @@ export default function EventSearch() {
           .catch((error) => console.log("Error loading events.", error))
   }, [searchTerm, token, dispatch]);
 
+  // Handler for "Show events in your city" button at the top.
+  // This handler sets the search term to user's current city.
   const handleClickShowEventsInYourCity = (): void => {
     setSearchTerm(user.location.city);
     setShowEventsInUserHomeCity(true);
   }
 
+  //    User's search input is assigned to dynamicSearchTerm first as user is 
+  // typing. dynamicSearchTerm is then only assigned to searchTerm useState after 
+  // user clicks Search button. This is to avoid the searchTerm from being changed 
+  // after user's each keystroke, which would otherwise prompt data fetching too 
+  // many times.
   let dynamicSearchTerm = "";
   const handleChangeSearchByCity = (evt: React.ChangeEvent<HTMLInputElement>): void => {
     dynamicSearchTerm = evt.target.value;
   }
 
   const handleClickSearchByCity = (evt: React.MouseEvent<HTMLButtonElement>) => {
-    setSearchTerm(dynamicSearchTerm);
+    setSearchTerm(dynamicSearchTerm.toLowerCase());
     setShowEventsInUserHomeCity(false);
   }
 
+  //    Handler to add event to cart in the backend and then update user's state 
+  // in redux store.
   const handleClickAddToCart = (eventId: string): void => {
     axios
-      .patch(`http://localhost:5000/api/v1/users/${user._id}/cart/events/${eventId}`, {}, {
+      .patch(`https://supper-club-social-backend.herokuapp.com/api/v1/users/${user._id}/cart/events/${eventId}`, {}, {
         headers: { Authorization: `Bearer ${token}`}
       })
       .then((data) => dispatch(userActions.updateUser({updatedUser: data.data})))
   }
 
   return (
-    <div className="event-list-container">
+    <div className={styles["event-list-container"]}>
+      {/* Top part - show events in user's city and search bar */}
       <div>
-        <button className="button" onClick={handleClickShowEventsInYourCity}>Show events in your city</button>
+        <button className={styles.button} onClick={handleClickShowEventsInYourCity}>Show events in your city</button>
         <p>OR</p>
-        <div className="SearchBar">
-          <label htmlFor="search-term" className="small-text">Search events by city's name</label><br /><br />
+        <div className={styles.SearchBar}>
+          <label htmlFor="search-term" className={styles["small-text"]}>
+            <b>Search events by city's name</b><br />
+            Note: Events have been preloaded only in Berlin and Munich, but you are welcomed to create new events in any cities under My events section.
+          </label><br /><br />
           <input
-            className="search-box"
+            className={styles["search-box"]}
             type="text"
             onChange={handleChangeSearchByCity}
             id="search-term"
             name="search-term"
           /><br />
-          <button className="search-button" onClick={handleClickSearchByCity}>Search</button>
+          <button className={styles["search-button"]} onClick={handleClickSearchByCity}>Search</button>
         </div>
         <br />
       </div>
+      {/* Bottom part - display events in user's city or based on searchTerm */}
       <div>
         {showEventsInUserHomeCity && <h4>Events in your city</h4>}
-        {!showEventsInUserHomeCity && <h4>Events in {searchTerm}</h4>}
+        {!showEventsInUserHomeCity && <h4>Events in {searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1).toLowerCase()}</h4>}
       </div>
       <div>   
-        {eventsByCity.length === 0 && <p className="small-text">There are no events in {searchTerm} at the moment</p>}
+        {eventsByCity?.length === 0 && <p className={styles["small-text"]}>There are no events in {searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1).toLowerCase()} at the moment</p>}
         {eventsByCity?.map((anEvent) => (
-          <div className="event-box" key={anEvent._id}>
+          <div className={styles["event-box"]} key={anEvent._id}>
             <div><img src={eventpic} alt="homecooked meal" /></div>
-            <div className="event-title">{anEvent.eventName}</div>
-            <div className="small-text">Where: {anEvent.eventLoc.city}, {anEvent.eventLoc.country}</div>
-            <div className="small-text">When: {anEvent.eventDateTime}</div>
-            <div className="small-text">Status: {anEvent.status}</div>
+            <div className={styles["event-title"]}>{anEvent.eventName}</div>
+            <div className={styles["small-text"]}>Where: {anEvent.eventLoc.city}, {anEvent.eventLoc.country}</div>
+            <div className={styles["small-text"]}>When: {anEvent.eventDateTime}</div>
+            <div className={styles["small-text"]}>Status: {anEvent.status}</div>
             <br />
             <div><b>Cuisine: </b>{anEvent.cuisine}</div>
             <div><b>No. of attendees allowed: </b>{anEvent.numOfAttendeesAllowed}</div>
@@ -91,9 +107,11 @@ export default function EventSearch() {
             <button 
               onClick={() => handleClickAddToCart(anEvent._id)}
               className={
+                //     Button to be grayed out if event has already been added to the cart, or
+                // if user is organizing the event, or if user has already purchased the event 
                 user.cart.includes(anEvent._id) || user.eventsAsOrganizer.includes(anEvent._id) || user.eventsAsAttendee.includes(anEvent._id) 
-                ? "inactive-button" 
-                : "button"
+                ? styles["inactive-button"] 
+                : styles.button
               }
             >
               Add event to cart

@@ -1,3 +1,4 @@
+/* Profile pic, username, user's location */
 .empty-profile-pic {
     width: 50%;
     aspect-ratio: 1/1;
@@ -26,6 +27,7 @@
     font-size: 0.8rem;
 }
 
+/* Nav menu */
 .nav-menu {
     text-align: left;
     font-size: 1rem;
@@ -35,4 +37,11 @@
 .nav-menu div {
     margin: 1rem 0;
     text-decoration: none;
+}
+
+@media (max-width: 600px) {
+    .nav-menu {
+        text-align: center;
+        margin-left: 0;
+    }
 }

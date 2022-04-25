@@ -4,8 +4,8 @@ import * as yup from 'yup';
 import axios from 'axios';
 
 import { RootState } from 'types';
-import 'components/Checkout/Checkout.css';
 import { userActions } from 'store/userSlice';
+import styles from 'components/Checkout/Checkout.module.css';
 
 export default function Checkout({setShowPaymentForm, total}: {
     setShowPaymentForm: React.Dispatch<React.SetStateAction<boolean>>, 
@@ -24,34 +24,42 @@ export default function Checkout({setShowPaymentForm, total}: {
   
     const userSchema = yup.object().shape({
       name: yup.string().required("Name is required."),
-      cardNum: yup.string().min(16, "Too short").max(16, "Too long").required("Credit card number is required."),
+      cardNum: yup.string().min(16, "16 digits required").max(16, "16 digits required").required("Credit card number is required."),
       expiry: yup.string().required("Card expiry date is required"),
-      cvvCvc: yup.string().min(3, "Too short").max(3, "Too long").required("CVV/CVC is required"),
+      cvvCvc: yup.string().min(3, "3 digits required").max(3, "3 digits required").required("CVV/CVC is required"),
     })
 
   return (
     <div>
-        <p className="form-type">Payment Details</p>
-        <div className="payment-form">
+        <p className={styles["form-type"]}>Payment Details</p>
+        <div className={styles["payment-form"]}>
+            {/* Credit card input form */}
             <Formik
                 initialValues={initialValues}
                 validationSchema={userSchema}
                 onSubmit={(values) => {
-                    // This is only a faked payment
-                    // No actual payment system is set up here.
+                    //    This is only a faked payment. No actual payment system is
+                    // set up here.
+                    //    Upon clicking pay, loop through the cart. For each eventId in the cart, 
+                    // update user's list of eventsAsAttendee in the backend by adding the eventId.
+                    // --> then update user's cart in the backend by removing the eventId --> then
+                    // fetch updated user's data and dispatch it to redux store.
+                    //    Once user's data in redux store is updated, cart should now be empty,
+                    // and user's MyEvents page should show these events in list of 
+                    // eventsAsAttendee. User's MyMessages page should also now show the 
+                    // message board for each added events.
                     user.cart?.forEach((eventId) => {
-                        //console.log("eventId to be patched: ", eventId);
                         axios
-                            .patch(`http://localhost:5000/api/v1/users/${user._id}/eventsAsAttendee/events/${eventId}`, {}, {
+                            .patch(`https://supper-club-social-backend.herokuapp.com/api/v1/users/${user._id}/eventsAsAttendee/events/${eventId}`, {}, {
                                 headers: { Authorization: `Bearer ${token}`}
                             })
                             .then((data) => {
                                 axios
-                                    .put(`http://localhost:5000/api/v1/users/${user._id}/cart/events/${eventId}`, {}, {
+                                    .put(`https://supper-club-social-backend.herokuapp.com/api/v1/users/${user._id}/cart/events/${eventId}`, {}, {
                                     headers: { Authorization: `Bearer ${token}`}
                                 })
                                 .then((data) => {
-                                    fetch(`http://localhost:5000/api/v1/users/${user._id}`, {
+                                    fetch(`https://supper-club-social-backend.herokuapp.com/api/v1/users/${user._id}`, {
                                         headers: { Authorization: `Bearer ${token}`}
                                     })
                                     .then((res) => res.json())
@@ -66,6 +74,8 @@ export default function Checkout({setShowPaymentForm, total}: {
                             .catch((error) => console.log("Error adding events to list of eventsAsAttendee.", error));
                     })
                     
+                    //    Faked credit card input is not used. User simply gets an alert that the
+                    // payment was successful.
                     alert("Payment successful!");
 
                     setShowPaymentForm(false);
@@ -77,7 +87,7 @@ export default function Checkout({setShowPaymentForm, total}: {
                             <label htmlFor="name">Name</label>
                             <Field id="name" name="name" />
                             {errors.name && touched.name
-                                ? (<div className="Errors">{errors.name}</div>)
+                                ? (<div className={styles.Errors}>{errors.name}</div>)
                                 : null
                             }
                         </div>
@@ -85,7 +95,7 @@ export default function Checkout({setShowPaymentForm, total}: {
                             <label htmlFor="cardNum">Credit Card Number</label>
                             <Field id="cardNum" name="cardNum" />
                             {errors.cardNum && touched.cardNum
-                                ? (<div className="Errors">{errors.cardNum}</div>)
+                                ? (<div className={styles.Errors}>{errors.cardNum}</div>)
                                 : null
                             }
                         </div>
@@ -93,7 +103,7 @@ export default function Checkout({setShowPaymentForm, total}: {
                             <label htmlFor="expiry">Expiry Date</label>
                             <Field id="expiry" name="expiry" placeholder="MM/YYYY" />
                             {errors.expiry && touched.expiry
-                                ? (<div className="Errors">{errors.expiry}</div>)
+                                    ? (<div className={styles.Errors}>{errors.expiry}</div>)
                                 : null
                             }
                         </div>
@@ -101,7 +111,7 @@ export default function Checkout({setShowPaymentForm, total}: {
                             <label htmlFor="cvvCvc">CVV/CVC</label>
                             <Field id="cvvCvc" name="cvvCvc" placeholder="***" />
                             {errors.cvvCvc && touched.cvvCvc
-                                ? (<div className="Errors">{errors.cvvCvc}</div>)
+                                ? (<div className={styles.Errors}>{errors.cvvCvc}</div>)
                                 : null
                             }
                         </div>

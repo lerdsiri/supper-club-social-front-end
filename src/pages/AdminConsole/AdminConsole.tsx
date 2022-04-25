@@ -5,14 +5,18 @@ import axios from 'axios';
 import TopBanner from 'components/TopBanner/TopBanner';
 import NavBar from 'components/NavBar/NavBar';
 import { User, RootState } from 'types';
-import 'pages/AdminConsole/AdminConsole.css';
+import styles from 'pages/AdminConsole/AdminConsole.module.css';
 
+// Admin console is the protected route available only if user.isAdmin is true.
+// Currently the only feature restricted to admin is banning users.
 export default function AdminConsole() {
+  // allUsers are set up as useState instead of being stored in redux store
+  // as allUsers only concern the admin console page.
   const [ allUsers, setAllUsers ] = useState<User[]>([]);
   const token = useSelector((state: RootState) => state.user.token);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/users`, {
+    fetch(`https://supper-club-social-backend.herokuapp.com/api/v1/users`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((res) => res.json())
@@ -20,13 +24,15 @@ export default function AdminConsole() {
   }, [token]);
 
   const handleClickBanUnban = (userId: string, isBeingBanned: boolean): void => {
+    // First, user's isBanned status is updated to true or false.
+    // Then, fetch all users' data and update allUsers useState again.
     axios
-      .put(`http://localhost:5000/api/v1/users/${userId}`, 
+      .put(`https://supper-club-social-backend.herokuapp.com/api/v1/users/${userId}`, 
         { isBanned: isBeingBanned },
         { headers: { Authorization: `Bearer ${token}` } }
       )
       .then((data) => {
-        fetch(`http://localhost:5000/api/v1/users`, {
+        fetch(`https://supper-club-social-backend.herokuapp.com/api/v1/users`, {
           headers: { Authorization: `Bearer ${token}` }
         })
           .then((res) => res.json())
@@ -35,20 +41,20 @@ export default function AdminConsole() {
   }
 
   return (
-    <div className="container">
+    <div className={styles.container}>
         <TopBanner />
-        <main className="main-content">
+        <main className={styles["main-content"]}>
             <nav>
                 <NavBar />
             </nav>
-            <section className="main-content__user-details">
+            <section className={styles["main-content__user-details"]}>
                 <div>
                   <h4>ALL USERS</h4>
                   {allUsers?.map((oneUser) => 
-                    <div className="user-profile-box" key={oneUser._id}>
-                      <div className="user-profile-content">
-                        <div className="image-container"><img src={oneUser.profilePic} alt="user-profile-pic" /></div>
-                        <div className="user-profile-info">
+                    <div className={styles["user-profile-box"]} key={oneUser._id}>
+                      <div className={styles["user-profile-content"]}>
+                        <div className={styles["image-container"]}><img src={oneUser.profilePic} alt="user-profile-pic" /></div>
+                        <div className={styles["user-profile-info"]}>
                           <div>Username   :  {oneUser.username}</div>
                           <div>Email      :  {oneUser.email}</div>
                           <div>First name :  {oneUser.firstName}</div>
@@ -61,11 +67,12 @@ export default function AdminConsole() {
                         </div>
                       </div>
                       <div>
+                        {/* If user is already banned, show the unban button. Otherwise, show the ban button. */}
                         { !oneUser.isBanned && 
-                          <button className="ban-unban-button" onClick={() => handleClickBanUnban(oneUser._id.toString(), true)}>Ban user</button>
+                          <button className={styles["ban-unban-button"]} onClick={() => handleClickBanUnban(oneUser._id.toString(), true)}>Ban user</button>
                         }
                         { oneUser.isBanned && 
-                          <button className="ban-unban-button" onClick={() => handleClickBanUnban(oneUser._id.toString(), false)}>Unban user</button>
+                          <button className={styles["ban-unban-button"]} onClick={() => handleClickBanUnban(oneUser._id.toString(), false)}>Unban user</button>
                         }
                       </div>
                     </div>

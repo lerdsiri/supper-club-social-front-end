@@ -1,3 +1,17 @@
+/* Edit, Delete profile buttons */
+.button {
+    padding: 0.5rem 2rem;
+    margin: 1rem 0.5rem;
+    cursor: pointer;
+    border: solid 0.5px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 0.5px 0.5px;
+    font-family: inherit;
+    color: white;
+    background-color: rgba(56, 126, 121, 0.5);
+}
+
+/* User's profile display */
 .profile-info {
     text-align: left;
     width: 50%;
@@ -8,6 +22,8 @@
     padding: 0.5rem;
 }
 
+/* After clicking Edit Profile */
+/* Profile image upload area */
 .upload-pic-title {
     margin-bottom: 0;
 }
@@ -22,6 +38,7 @@
     padding-bottom: 2rem;
 }
 
+/* Edit profile form */
 .edit-profile-form {
     width: 70%;
     margin: auto;
@@ -71,4 +88,19 @@
     color: red;
     border: none;
     font-size: 0.7rem;
+}
+
+@media (max-width: 600px) {
+    /* profile data display */
+    .profile-info {
+        text-align: left;
+        width: 100%;
+        margin: 1rem;
+        margin-left: 2rem;
+    }
+
+    /* upload image area */
+    .upload-pic-title {
+        margin-bottom: 1rem;
+    }
 }

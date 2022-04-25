@@ -7,7 +7,7 @@ import NavBar from 'components/NavBar/NavBar';
 //import UserProfile from 'components/UserProfile/UserProfile';
 import { RootState } from 'types';
 import { conversationActions } from 'store/conversationSlice';
-import 'pages/MyMessages/MyMessages.css';
+import styles from 'pages/MyMessages/MyMessages.module.css';
 
 export default function MyMessages() {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ export default function MyMessages() {
   const conversations = useSelector((state: RootState) => state.conversation.conversations);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/conversations`, {
+    fetch(`https://supper-club-social-backend.herokuapp.com/api/v1/conversations`, {
       headers: { Authorization: `Bearer ${token}`}
     })
       .then((res) => res.json())
@@ -33,11 +33,11 @@ export default function MyMessages() {
 
   const handleClickPostMessage = (conversationId: string): void => {
     axios
-      .put(`http://localhost:5000/api/v1/conversations/${conversationId}/users/${user._id}`,
+      .put(`https://supper-club-social-backend.herokuapp.com/api/v1/conversations/${conversationId}/users/${user._id}`,
         { content: newMessage },
         { headers: { Authorization: `Bearer ${token}` } })
       .then((data) => {
-        fetch(`http://localhost:5000/api/v1/conversations`, {
+        fetch(`https://supper-club-social-backend.herokuapp.com/api/v1/conversations`, {
           headers: { Authorization: `Bearer ${token}`}
         })
           .then((res) => res.json())
@@ -47,13 +47,13 @@ export default function MyMessages() {
   }
 
   return (
-    <div className="container">
+    <div className={styles.container}>
         <TopBanner />
-        <main className="main-content">
+        <main className={styles["main-content"]}>
             <nav>
                 <NavBar />
             </nav>
-            <section className="main-content__conversation-details">
+            <section className={styles["main-content__conversation-details"]}>
                 <div>
                   <h4>MESSAGE BOARDS FOR EVENTS I'M ORGANIZING</h4>
                   {(user.eventsAsOrganizer.length === 0) && <p>You are currently not organizing any events.</p>}
@@ -61,12 +61,12 @@ export default function MyMessages() {
                     events?.map((oneEvent) => 
                       oneEvent._id.toString() === organizedEventId
                       ? 
-                        <div className="conversation-box" key={oneEvent._id}>
-                          <div className="conversation-title">{oneEvent.eventName}</div>
-                          <div className="small-text">Where: {oneEvent.eventLoc.city}, {oneEvent.eventLoc.country}</div>
-                          <div className="small-text">When: {oneEvent.eventDateTime}</div>
-                          <div className="small-text">Status: {oneEvent.status}</div>
-                          <div className="small-text">No. of attendees allowed: {oneEvent.numOfAttendeesAllowed}</div>
+                        <div className={styles["conversation-box"]} key={oneEvent._id}>
+                          <div className={styles["conversation-title"]}>{oneEvent.eventName}</div>
+                          <div className={styles["small-text"]}>Where: {oneEvent.eventLoc.city}, {oneEvent.eventLoc.country}</div>
+                          <div className={styles["small-text"]}>When: {oneEvent.eventDateTime}</div>
+                          <div className={styles["small-text"]}>Status: {oneEvent.status}</div>
+                          <div className={styles["small-text"]}>No. of attendees allowed: {oneEvent.numOfAttendeesAllowed}</div>
                           <br />
                           {
                             conversations?.map((conversation) =>                   
@@ -76,22 +76,24 @@ export default function MyMessages() {
                                   <div>
                                     <label htmlFor="new-message">New Message</label><br /><br />
                                     <textarea
-                                      className="message-box"
+                                      className={styles["message-box"]}
                                       onChange={handleChangeNewMessage}
                                       id="new-message"
                                       name="new-message"
                                     /><br />
-                                    <button className="post-message-button" onClick={() => handleClickPostMessage(conversation._id)}>Post</button>
+                                    <button className={styles["post-message-button"]} onClick={() => handleClickPostMessage(conversation._id)}>Post</button>
                                   </div>
                                   <div>
                                     {conversation.messages?.map((message) => (
-                                      <div className="existing-message" key={message._id}>
-                                        <img src={message.author?.profilePic} alt="author profile pic" />
-                                        <div className="author-info">
-                                          <div className="small-text"><b>{message.author?.username}</b>:</div>
-                                          <div className="small-text">{message.messageDateTime}</div>
+                                      <div className={styles["existing-message"]} key={message._id}>
+                                        <div className={styles["author-profile-pic"]}>
+                                          <img src={message.author?.profilePic} alt="author profile pic" />
                                         </div>
-                                        <div className="message-content">{message.content}</div>
+                                        <div className={styles["author-info"]}>
+                                          <div className={styles["small-text"]}><b>{message.author?.username}</b>: </div>
+                                          <div className={styles["small-text"]}> {message.messageDateTime}</div>
+                                        </div>
+                                        <div className={styles["message-content"]}>{message.content}</div>
                                       </div>
                                     ))}
                                   </div>                                  
@@ -111,12 +113,12 @@ export default function MyMessages() {
                     events?.map((oneEvent) => 
                       oneEvent._id.toString() === attendedEventId
                       ? 
-                        <div className="conversation-box" key={oneEvent._id}>
-                          <div className="conversation-title">{oneEvent.eventName}</div>
-                          <div className="small-text">Where: {oneEvent.eventLoc.city}, {oneEvent.eventLoc.country}</div>
-                          <div className="small-text">When: {oneEvent.eventDateTime}</div>
-                          <div className="small-text">Status: {oneEvent.status}</div>
-                          <div className="small-text">No. of attendees allowed: {oneEvent.numOfAttendeesAllowed}</div>
+                        <div className={styles["conversation-box"]} key={oneEvent._id}>
+                          <div className={styles["conversation-title"]}>{oneEvent.eventName}</div>
+                          <div className={styles["small-text"]}>Where: {oneEvent.eventLoc.city}, {oneEvent.eventLoc.country}</div>
+                          <div className={styles["small-text"]}>When: {oneEvent.eventDateTime}</div>
+                          <div className={styles["small-text"]}>Status: {oneEvent.status}</div>
+                          <div className={styles["small-text"]}>No. of attendees allowed: {oneEvent.numOfAttendeesAllowed}</div>
                           <br />
                           {
                             conversations?.map((conversation) =>                   
@@ -126,20 +128,20 @@ export default function MyMessages() {
                                   <div>
                                     <label htmlFor="new-message">New Message</label><br /><br />
                                     <textarea
-                                      className="message-box"
+                                      className={styles["message-box"]}
                                       onChange={handleChangeNewMessage}
                                       id="new-message"
                                       name="new-message"
                                     /><br />
-                                    <button className="post-message-button" onClick={() => handleClickPostMessage(conversation._id)}>Post</button>
+                                    <button className={styles["post-message-button"]} onClick={() => handleClickPostMessage(conversation._id)}>Post</button>
                                   </div>
                                   <div>
                                     {conversation.messages?.map((message) => (
-                                      <div className="existing-message" key={message._id}>
+                                      <div className={styles["existing-message"]} key={message._id}>
                                         <img src={message.author.profilePic} alt="author profile pic" />
-                                        <div className="author-info">
-                                          <div className="small-text"><b>{message.author.username}</b>:</div>
-                                          <div className="small-text">{message.messageDateTime}</div>
+                                        <div className={styles["author-info"]}>
+                                          <div className={styles["small-text"]}><b>{message.author.username}</b>:</div>
+                                          <div className={styles["small-text"]}>{message.messageDateTime}</div>
                                         </div>
                                         <div>{message.content}</div>
                                       </div>

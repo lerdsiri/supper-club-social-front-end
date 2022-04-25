@@ -1,5 +1,6 @@
 .top-banner {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     background-color: #ccc;
@@ -16,3 +17,18 @@
     width: 25%;
 }
 
+@media (max-width: 600px) {
+    .top-banner {
+        text-align: center;
+    }
+
+    .top-banner h1 {
+        width: 100%;
+        margin: 1rem;
+    }
+    
+    .top-banner p {
+        width: 100%;
+        margin: 1rem;
+    }
+}

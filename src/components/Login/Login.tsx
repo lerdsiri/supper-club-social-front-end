@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 
 import { userActions } from 'store/userSlice';
-import 'components/Login/Login.css';
+import styles from 'components/Login/Login.module.css';
 
 export default function Login() {
   const initialValues = {
@@ -21,14 +21,15 @@ export default function Login() {
 
   return (
     <div>
-        <p className="form-type">Login</p>
-        <div className="login-form">
+        <p className={styles["form-type"]}>Login</p>
+        <div className={styles["login-form"]}>
           <Formik
             initialValues={initialValues}
             validationSchema={userSchema}
             onSubmit={(values) => {
+              // After logging in, save the returned user's data and token in redux store
               axios
-                .post('http://localhost:5000/api/v1/users/login', values)
+                .post('https://supper-club-social-backend.herokuapp.com/api/v1/users/login', values)
                 .then((data) => {
                   const user = data.data.userLessPassword;
                   const token = data.data.token;
@@ -43,7 +44,7 @@ export default function Login() {
                   <label htmlFor="email">Email</label>
                   <Field id="email" name="email" />
                   {errors.email && touched.email
-                    ? (<div className="Errors">{errors.email}</div>)
+                    ? (<div className={styles.Errors}>{errors.email}</div>)
                     : null
                   }
                 </div>
@@ -51,7 +52,7 @@ export default function Login() {
                   <label htmlFor="password">Password</label>
                   <Field id="password" name="password" />
                   {errors.password && touched.password
-                    ? (<div className="Errors">{errors.password}</div>)
+                    ? (<div className={styles.Errors}>{errors.password}</div>)
                     : null
                   }
                 </div>
