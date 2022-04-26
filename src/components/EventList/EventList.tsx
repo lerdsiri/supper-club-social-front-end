@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import eventpic from 'assets/images/event-pic.jpg';
 
+import { RootState } from 'types';
 import { userActions } from 'store/userSlice';
 import { eventActions } from 'store/eventSlice';
-import { RootState } from 'types';
 import styles from 'components/EventList/EventList.module.css';
 
 export default function EventSearch() {

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
-import axios from 'axios';
 
 import { RootState } from 'types';
 import { userActions } from 'store/userSlice';

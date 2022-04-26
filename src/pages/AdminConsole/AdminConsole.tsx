@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 
+import { User, RootState } from 'types';
 import TopBanner from 'components/TopBanner/TopBanner';
 import NavBar from 'components/NavBar/NavBar';
-import { User, RootState } from 'types';
 import styles from 'pages/AdminConsole/AdminConsole.module.css';
 
 // Admin console is the protected route available only if user.isAdmin is true.

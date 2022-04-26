@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 import { Formik, Field, Form } from 'formik';
 import * as yup from 'yup';
-import axios from 'axios';
 
-import { eventActions } from 'store/eventSlice';
-import { userActions } from 'store/userSlice';
-import { conversationActions } from 'store/conversationSlice';
 import { RootState } from 'types';
+import { userActions } from 'store/userSlice';
+import { eventActions } from 'store/eventSlice';
+import { conversationActions } from 'store/conversationSlice';
 import styles from 'components/CreateEvent/CreateEvent.module.css';
 
 export default function CreateEvent() {

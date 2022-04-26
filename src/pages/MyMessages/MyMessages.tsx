@@ -2,11 +2,10 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
-import TopBanner from 'components/TopBanner/TopBanner';
-import NavBar from 'components/NavBar/NavBar';
-//import UserProfile from 'components/UserProfile/UserProfile';
 import { RootState } from 'types';
 import { conversationActions } from 'store/conversationSlice';
+import TopBanner from 'components/TopBanner/TopBanner';
+import NavBar from 'components/NavBar/NavBar';
 import styles from 'pages/MyMessages/MyMessages.module.css';
 
 export default function MyMessages() {

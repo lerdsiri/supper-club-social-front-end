@@ -1,6 +1,6 @@
+import axios from 'axios';
 import { Formik, Field, Form } from 'formik';
 import * as yup from 'yup';
-import axios from 'axios';
 
 import styles from 'components/Signup/Signup.module.css';
 

@@ -2,11 +2,10 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import eventpic from 'assets/images/event-pic.jpg';
 
+import { RootState } from 'types';
 import TopBanner from 'components/TopBanner/TopBanner';
 import NavBar from 'components/NavBar/NavBar';
-//import UserProfile from 'components/UserProfile/UserProfile';
 import CreateEvent from 'components/CreateEvent/CreateEvent';
-import { RootState } from 'types';
 import styles from 'pages/MyEvents/MyEvents.module.css';
 
 export default function MyEvents() {

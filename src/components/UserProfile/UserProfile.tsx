@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { Formik, Field, Form } from 'formik';
 import * as yup from 'yup';
-import axios from 'axios';
  
-import { userActions } from 'store/userSlice';
 import { RootState } from 'types';
+import { userActions } from 'store/userSlice';
 import styles from 'components/UserProfile/UserProfile.module.css';
 
 export default function UserProfile() {

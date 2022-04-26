@@ -7,8 +7,6 @@ import MyEvents from 'pages/MyEvents/MyEvents';
 import MyMessages from 'pages/MyMessages/MyMessages';
 import AdminConsole from 'pages/AdminConsole/AdminConsole';
 import { IsUserAuthenticated, IsUserUnauthenticated, IsUserAdmin } from 'components/UseAuth/UseAuth';
-import './App.css';
-
 
 export default function App() {
   return (

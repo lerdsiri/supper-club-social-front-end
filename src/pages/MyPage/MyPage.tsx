@@ -2,14 +2,14 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import jwt_decode from "jwt-decode";
 
+import { RootState } from 'types';
+import { userActions } from 'store/userSlice';
+import { eventActions } from 'store/eventSlice';
+import { conversationActions } from 'store/conversationSlice';
 import TopBanner from 'components/TopBanner/TopBanner';
 import NavBar from 'components/NavBar/NavBar';
 import EventList from 'components/EventList/EventList';
 import Cart from 'components/Cart/Cart';
-import { userActions } from 'store/userSlice';
-import { eventActions } from 'store/eventSlice';
-import { conversationActions } from 'store/conversationSlice';
-import { RootState } from 'types';
 import styles from 'pages/MyPage/MyPage.module.css';
 
 export default function MyPage() {

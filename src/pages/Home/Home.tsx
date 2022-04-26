@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
-
 import mainpic from 'assets/images/main-pic.jpg';
+
+import { RootState } from 'types';
 import MyPage from 'pages/MyPage/MyPage';
 import Signup from 'components/Signup/Signup';
 import Login from 'components/Login/Login';
-import { RootState } from 'types';
 import styles from 'pages/Home/Home.module.css';
 
 export default function Home() {

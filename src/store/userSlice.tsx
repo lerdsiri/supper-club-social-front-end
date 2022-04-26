@@ -34,11 +34,6 @@ export const userSlice = createSlice({
             state.user = action.payload.user;
             state.isLoggedin = true;
             state.token = action.payload.token;
-            /*
-            console.log("user after login: ", state.user)
-            console.log("isLoggedin after login: ", state.isLoggedin)
-            console.log("token after login: ", state.token)
-            */
         },
         updateUser(state: UserReducerState, action: PayloadAction<{updatedUser: User}>): void {
             state.user = action.payload.updatedUser;
