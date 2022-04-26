@@ -36,6 +36,7 @@
     background-color: rgba(56, 126, 121, 0.5);
 }
 
+/* Content in each conversation box */
 .conversation-box {
     padding: 1rem;
     margin-bottom: 2rem;
@@ -57,6 +58,7 @@
     font-size: 0.7rem;
 }
 
+/* new message text area */
 .message-box {
     border: 0.1rem solid rgba(56, 126, 121, 0.5);
     border-radius: 5px;
@@ -80,6 +82,7 @@
     background-color: rgba(56, 126, 121, 0.5);
 }
 
+/* list of existing messages */
 .existing-message {
     display: flex;
     align-items: flex-start;

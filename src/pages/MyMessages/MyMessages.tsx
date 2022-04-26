@@ -57,6 +57,11 @@ export default function MyMessages() {
                 <div>
                   <h4>MESSAGE BOARDS FOR EVENTS I'M ORGANIZING</h4>
                   {(user.eventsAsOrganizer.length === 0) && <p>You are currently not organizing any events.</p>}
+                  {/* Loop through user's list of eventsAsOrganizer. For each eventAsOrganizer,
+                  loop through list of all events to find the matching event id and retrieve 
+                  necessary info for that event + then loop through list of all conversations
+                  to find the matching event id and retrieve all messages in a conversation.
+                      As of now, there is only one conversation per event (i.e., message board). */}
                   {user.eventsAsOrganizer?.map((organizedEventId) => (
                     events?.map((oneEvent) => 
                       oneEvent._id.toString() === organizedEventId
@@ -73,6 +78,7 @@ export default function MyMessages() {
                               conversation.event === organizedEventId
                               ?
                                 <div key={conversation._id}>
+                                  {/* Text area for posting new message */}
                                   <div>
                                     <label htmlFor="new-message">New Message</label><br /><br />
                                     <textarea
@@ -83,6 +89,10 @@ export default function MyMessages() {
                                     /><br />
                                     <button className={styles["post-message-button"]} onClick={() => handleClickPostMessage(conversation._id)}>Post</button>
                                   </div>
+                                  {/* Messages are listed in reverse chronological order. 
+                                      Note: Messages are already stored in reverse chronological order
+                                  in a conversation (new message is always added to the front of the 
+                                  array.) */}
                                   <div>
                                     {conversation.messages?.map((message) => (
                                       <div className={styles["existing-message"]} key={message._id}>
@@ -109,6 +119,7 @@ export default function MyMessages() {
                 <div>
                   <h4>MESSAGE BOARDS FOR EVENTS I'M ATTENDING</h4>
                   {(user.eventsAsAttendee.length === 0) && <p>You are currently not attending any events.</p>}
+                  {/* See comment above for message boards for events I'm organizing */}
                   {user.eventsAsAttendee?.map((attendedEventId) => (
                     events?.map((oneEvent) => 
                       oneEvent._id.toString() === attendedEventId
@@ -125,6 +136,7 @@ export default function MyMessages() {
                               conversation.event === attendedEventId
                               ?
                                 <div key={conversation._id}>
+                                  {/* Text area for posting new message */}
                                   <div>
                                     <label htmlFor="new-message">New Message</label><br /><br />
                                     <textarea
@@ -135,6 +147,10 @@ export default function MyMessages() {
                                     /><br />
                                     <button className={styles["post-message-button"]} onClick={() => handleClickPostMessage(conversation._id)}>Post</button>
                                   </div>
+                                  {/* Messages are listed in reverse chronological order. 
+                                      Note: Messages are already stored in reverse chronological order
+                                  in a conversation (new message is always added to the front of the 
+                                  array.) */}
                                   <div>
                                     {conversation.messages?.map((message) => (
                                       <div className={styles["existing-message"]} key={message._id}>

@@ -36,6 +36,7 @@
     background-color: rgba(56, 126, 121, 0.5);
 }
 
+/* content within each event box */
 .event-box {
     padding: 1rem;
     margin-bottom: 2rem;

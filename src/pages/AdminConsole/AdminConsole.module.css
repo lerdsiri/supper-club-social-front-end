@@ -24,6 +24,7 @@
     color:rgba(56, 126, 121, 0.5);
 }
 
+/* content within each box of user details */
 .user-profile-box {
     display: flex;
     flex-direction: column;

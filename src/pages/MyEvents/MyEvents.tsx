@@ -18,17 +18,31 @@ export default function MyEvents() {
     <div className={styles.container}>
         <TopBanner />
         <main className={styles["main-content"]}>
+            {/* Left column */}
             <nav>
                 <NavBar />
             </nav>
+            {/* Right column */}
             <section className={styles["main-content__event-details"]}>
+                {/* Right column - top - create new event */}
                 <div>
                   <button className={styles.button} onClick={() => setCreateNewEvent(!createNewEvent)}>Create New Event</button>
                 </div>
                 {createNewEvent && <CreateEvent />}
+                {/* Right column - middle - Events I'm Organizing */}
                 <div>
                   <h4>EVENTS I'M ORGANIZING</h4>
                   {(user.eventsAsOrganizer.length === 0) && <p>You are currently not organizing any events.</p>}
+                  {/* Loop through user's list of eventsAsOrganizers. For each eventAsOrganizer,
+                  loop through list of all events to find the matching event id and retrieve
+                  event info. 
+                      Backend could be improved by returning user object whose list of 
+                  eventsAsOrganizer has been populated with necessary info. But this could mean
+                  always having to populate this field in all related backend routes that
+                  returns user object because frontend alsmost always updates user object 
+                  in redux store everytime there is a request sent to the backend that could
+                  affect user object. But in many instances in the frontend, the populated
+                  field is actually not needed. Does this improve or worsen the speed overall? */}
                   {user.eventsAsOrganizer.map((organizedEventId) => (
                     events.map((oneEvent) => 
                       oneEvent._id.toString() === organizedEventId
@@ -50,9 +64,11 @@ export default function MyEvents() {
                     )
                   ))}
                 </div>
+                {/* Right column - bottom - Events I'm Attending */}
                 <div>
                   <h4>EVENTS I'M ATTENDING</h4>
                   {(user.eventsAsAttendee.length === 0) && <p>You are not attending any events.</p>}
+                  {/* See inline comments above related to Events I'm Organizing */}
                   {user.eventsAsAttendee.map((attendEventId) => (
                     events.map((oneEvent) => 
                       oneEvent._id.toString() === attendEventId
