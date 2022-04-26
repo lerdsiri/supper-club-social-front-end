@@ -30,11 +30,11 @@ export default function Home() {
                 {/* Bottom part with signup form and login form */}
                 <div className={styles['signup-and-login']}>
                     <div className={styles.signup}>
-                        <h5>Sign up today and start organizing or enjoying meals prepared by excellent homecooks in your community</h5> 
+                        <h5 className={styles['description-text']}>Sign up today and start organizing or enjoying meals prepared by excellent homecooks in your community</h5> 
                         <Signup />
                     </div>
                     <div className={styles.login}>
-                        <h5>Already signed up? Log in here.</h5><br />
+                        <h5 className={styles['description-text']}>Already signed up? Log in here.</h5><br />
                         <Login />
                     </div>
                 </div>
