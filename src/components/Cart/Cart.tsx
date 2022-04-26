@@ -12,7 +12,7 @@ export default function Cart() {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user.user);
   const token = useSelector((state: RootState) => state.user.token);
-  const events = useSelector((state: RootState) => state.event.eventsByCity);
+  const events = useSelector((state: RootState) => state.event.events);
   const [ showPaymentForm, setShowPaymentForm ] = useState(false);
   
   let eventsInCart: Event[] = []; 
