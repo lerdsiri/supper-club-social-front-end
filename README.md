@@ -1,12 +1,16 @@
-# Getting Started with Create React App
+# Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Supper Club Social is a full stack project made as part of the assignment at the coding bootcamp, Integrify Academy, that combines my two passions - cooking and coding. This project envisions a community in which users may sign up to attend lunch or dinner parties organized by other users in the community at their homes. This helps showcase excellent home cooks and connect the community together. And what better way to get to know your neighbors than with food! 
 
-## Available Scripts
+This is a solo project - github automatically added the instructor as a co-contributor who set up the original private repository under Integrify Academy github account for ease of turning in the assignment. The code was otherwise written independently with minimal guidance from the course instructor.
 
-In the project directory, you can run:
+## Links
 
-### `npm start`
+The frontend was launched on Netlify at: https://siri-supper-club-social.netlify.app/
+
+The backend was launched on Heroku. The backend code can be found here: https://github.com/lerdsiri/supper-club-social
+
+### 
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
