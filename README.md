@@ -4,6 +4,8 @@ Supper Club Social is a solo full stack project made as part of the assignment a
 
 ## Links
 
+This git repo contains the frontend only.
+
 The frontend was launched on Netlify at: https://siri-supper-club-social.netlify.app/ 
 
 The backend was launched on Heroku. The backend code can be found here: https://github.com/lerdsiri/supper-club-social
@@ -44,27 +46,27 @@ Left column: Nav bar with the following menu:
 - Admin console (only shown if logged in as Admin)
 
 Middle Column: show events in user's current city by default
-- "Show events in your city" button: go back to list all events in user's current city if the search results are showing events in another city
+- "Show events in your city" button: lists all events in user's current city if the search results are showing events in another city
 - Search feature: search events in another city (events have been pre-loaded only for Berlin and Munich, but you are welcomed to create new events in any cities under MyEvents)
 
 User can add any events to cart. The "Add to Cart" button is disabled if the event is the one that user is organizing or already attending or if it has been added to cart.
 
 Right column: cart and payment
-- "Remove" button: remove event from cart
-- "Checkout" button: show payment form 
+- "Remove" button: removes event from cart
+- "Checkout" button: shows payment form 
 - "Pay" button: no actual payment has been set up. You can enter any random 16-digit credit card number. Once "paid", the events are removed from cart and placed on user's list of eventsAsAttendees (shwon in MyEvents page)
 
 ### MyProfile
 
 Show user's current profile by default.
-- "Edit Profile" button: allow user to upload a profile image to replace the current one; allow user to edit profile information (except username, email, and password)
-- "Delete Profile" button: delete user's profile and redirect user back to signup/login page
+- "Edit Profile" button: allows user to upload a profile image to replace the current one; allows user to edit profile information (except username, email, and password)
+- "Delete Profile" button: deletes user's profile and redirects user back to signup/login page
 
 Uploaded images are stored on Cloudinary.
 
 ### MyMessages
 
-Each event is automatically assigned a message board (conversation) for the organizing user and attendees to communicate with one another. MyMessages page shows the message boards for all the events that the user is organizing and attending. Messages are grouped by event and shown in reverse chronological order (latest message at the top).
+Each event is automatically assigned a message board (conversation) for the organizing user and attendees to communicate with one another. MyMessages page shows the message boards for all the events that the user is organizing or attending. Messages are grouped by event and shown in reverse chronological order (latest message at the top).
 
 If you want to see messages that have been previously posted by various users, check out "One Night in Berlin" event by adding it to cart and fake-pay so that its message board shows up on MyMessages page. If you sign in as Angela Merkel, the message board for "One Night in Berlin" event will already be shown on MyMessages page.
 
