@@ -13,6 +13,7 @@ The backend was launched on Heroku. The backend code can be found here: https://
 ## Tech Stack
 
 Frontend: React, Redux Toolkit, Typescript, CSS, HTML, JavaScript
+<br>
 Backend: Node.js, Express, MongoDB
 
 ## Features
