@@ -30,9 +30,13 @@ Login - Any existing users may log in with email and password. Logged-in users m
 
 You may test the page by signing up as a new user. Alternatively, you may use the following login/password:
 
-Login as Angela Merkel (user): email - angela@gmail.com, password - angela@gmail.com
-<br>
-Login as Admin: email - admin@gmail.com, password - admin@gmail.com
+Login as Angela Merkel (user): <br>
+email - angela@gmail.com <br> 
+password - angela@gmail.com
+
+Login as Admin: <br> 
+email - admin@gmail.com <br> 
+password - admin@gmail.com
 
 (Please do not delete these profiles so that other people can also try using them)
 
