@@ -13,9 +13,14 @@ This git repo contains the frontend only.
 
 The frontend was launched on Netlify at: https://siri-supper-club-social.netlify.app/ 
 <br>
+<br>
 You may test the page by signing up as a new user. Alternatively, you may use the following login/password:
 <br>
-Login as Angela Merkel (user): email - angela@gmail.com, password - angela@gmail.com
+Login as Angela Merkel (user): 
+<br>
+email - angela@gmail.com 
+<br>
+password - angela@gmail.com
 
 The backend was launched on Heroku. The backend code can be found here: https://github.com/lerdsiri/supper-club-social
 
