@@ -14,6 +14,8 @@ This git repo contains the frontend only.
 The frontend was launched on Netlify at: https://siri-supper-club-social.netlify.app/ 
 <br>
 <br>
+** Backend currently not functioning due to discontinuation of Heroku account **
+<br>
 You may test the page by signing up as a new user. Alternatively, you may use the following login/password:
 <br>
 Login as Angela Merkel (user): 
